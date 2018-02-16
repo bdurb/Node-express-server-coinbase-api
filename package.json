@@ -1,0 +1,19 @@
+{
+  "name": "node-express-server-coinbase-api",
+  "version": "1.0.0",
+  "description": "node/express server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bdurb/Node-express-server-coinbase-api.git"
+  },
+  "author": "Bdurb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bdurb/Node-express-server-coinbase-api/issues"
+  },
+  "homepage": "https://github.com/bdurb/Node-express-server-coinbase-api#readme"
+}
