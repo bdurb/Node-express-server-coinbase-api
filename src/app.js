@@ -10,17 +10,28 @@ const STATUS_SUCCESS = 200;
 
 server.use(bodyParser.json());
 
-server.get('/compare', (req,res) => {
-  fetch('https://api.coindesk.com/v1/bpi/currentprice.json')
-    .then(value => value.json())
-    .then(value => {
-      res.status(STATUS_SUCCESS);
-      res.send(value.bpi.USD.rate);
-    })
+
+server.get('/compare', (req, res) => {
+  fetch('https://api.coindesk.com/v1/bpi/historical/close.json?for=yesterday')
+    .then(yesterday => yesterday.json())
+    .then(yesterday => {
+      yesterday = Object.values(yesterday.bpi)[0];
+      fetch('https://api.coindesk.com/v1/bpi/currentprice.json')
+        .then(now => now.json())
+        .then(now => {
+          now = now.bpi.USD.rate_float;
+          const difference = Number((now - yesterday).toFixed(4));
+          res.status(STATUS_SUCCESS)
+          difference < 0 ? res.send(`Value has dropped ${difference}`) : res.send(`Value has increased by ${difference}`);
+        })})
+        .catch(err => {
+          res.status(USER_ERROR)
+          res.send({err: err})
+      })
     .catch(err => {
-      res.status(USER_ERROR);
+      res.status(USER_ERROR)
       res.send({err: err})
-    });
+  })
 });
 
 server.listen(PORT, () => {
