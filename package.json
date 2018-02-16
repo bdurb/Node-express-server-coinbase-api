@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/bdurb/Node-express-server-coinbase-api/issues"
   },
-  "homepage": "https://github.com/bdurb/Node-express-server-coinbase-api#readme"
+  "homepage": "https://github.com/bdurb/Node-express-server-coinbase-api#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "node-fetch": "^2.0.0"
+  }
 }
